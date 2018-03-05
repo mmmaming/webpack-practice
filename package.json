@@ -1,0 +1,32 @@
+{
+  "name": "webpack-practice",
+  "version": "1.0.0",
+  "description": "\"# webpack-practice\"",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack src/index.js --output dist/bundle.js",
+    "build": "webpack --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mmmaming/webpack-practice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mmmaming/webpack-practice/issues"
+  },
+  "homepage": "https://github.com/mmmaming/webpack-practice#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^0.1.18",
+    "css-loader": "^0.28.10",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.0.4",
+    "style-loader": "^0.20.2",
+    "webpack": "^4.0.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.5",
+    "webpack-cli": "^2.0.9"
+  }
+}
