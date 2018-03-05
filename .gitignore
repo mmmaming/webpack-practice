@@ -1,8 +1,7 @@
 node_modules
 npm-debug.log
 dist
-.idea/
+.idea
 .vscode/
 build/
 .DS_Store
-dist/
