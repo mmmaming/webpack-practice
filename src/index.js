@@ -2,7 +2,7 @@
  * Created on 2018/3/1.
  */
 import { cube } from './math.js';
-
+import _ from 'lodash';
 console.log(process.env.NODE_ENV)
 
 

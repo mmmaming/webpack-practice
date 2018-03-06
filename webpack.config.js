@@ -9,12 +9,18 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: './src/index.js'
+    index: './src/index.js',
+    another: './src/another-module.js'
   },
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
     hot: true
+  },
+  optimization: {
+    splitChunks: {
+      name: 'common'
+    }
   },
   plugins: [
     new UglifyJSPlugin({
@@ -22,7 +28,7 @@ module.exports = {
     }),
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: 'Output Management'
+      title: 'Code Splitting'
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()
