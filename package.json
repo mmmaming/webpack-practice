@@ -4,8 +4,8 @@
   "description": "\"# webpack-practice\"",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open",
-    "build": "webpack --config webpack.config.js",
+    "start": "webpack-dev-server --open --config webpack.dev.js --define process.env.NODE_ENV='dev'",
+    "build": "webpack --config webpack.prod.js",
     "watch": "webpack --watch",
     "server": "node server.js"
   },
@@ -29,7 +29,8 @@
     "uglifyjs-webpack-plugin": "^1.2.2",
     "webpack": "^4.0.1",
     "webpack-dev-middleware": "^3.0.0",
-    "webpack-dev-server": "^3.1.0"
+    "webpack-dev-server": "^3.1.0",
+    "webpack-merge": "^4.1.2"
   },
   "dependencies": {
     "lodash": "^4.17.5",
