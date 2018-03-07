@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -41,12 +42,16 @@ module.exports = {
 
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: 'Code Splitting'
+      title: 'Progressive Web Application'
     }),
     new webpack.ProvidePlugin({
       // _: 'lodash'
       join: ['lodash', 'join']
-    })
+    }),
+      new WorkboxPlugin({
+        clientsClaim: true,
+        skipWaiting: true
+      })
     // new webpack.NamedModulesPlugin(),
     // new webpack.HotModuleReplacementPlugin()
   ],
