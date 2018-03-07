@@ -9,8 +9,12 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: {
-    index: './src/index.js',
-    another: './src/another-module.js'
+    // main: './src/index.js',
+    // vendor: [
+    //     'lodash'
+    // ]
+    polyfills: './src/polyfills.js',
+    index: './src/index.js'
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -19,19 +23,32 @@ module.exports = {
   },
   optimization: {
     splitChunks: {
-      name: 'common'
+      cacheGroups: {
+        vendor: {
+          name: 'vendor'
+        },
+        manifest: {
+          name: 'js/manifest'
+        }
+      }
     }
   },
   plugins: [
-    new UglifyJSPlugin({
-      sourceMap: true
-    }),
+    // new UglifyJSPlugin({
+    //   sourceMap: true
+    // }),
+    new webpack.HashedModuleIdsPlugin(),
+
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       title: 'Code Splitting'
     }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.ProvidePlugin({
+      // _: 'lodash'
+      join: ['lodash', 'join']
+    })
+    // new webpack.NamedModulesPlugin(),
+    // new webpack.HotModuleReplacementPlugin()
   ],
   module: {
     rules: [
@@ -39,10 +56,21 @@ module.exports = {
         test: /\.css$/,
         use : ['style-loader', 'css-loader']
       }
+      // },
+      // {
+      //   test: require.resolve('./src/index.js'),
+      //   use : 'imports-loader?this=>window'
+      // }
+      // },
+      // {
+      //   test: require.resolve('./src/global.js'),
+      //   use: 'exports-loader?file,parse=helpers.parse'
+      // }
     ]
   },
   output: {
     filename: '[name].bundle.js',
+    // chunkFilename: '[name].bundle.js',
     path: path.resolve(__dirname,'dist')
   }
 };
