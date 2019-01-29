@@ -5,7 +5,8 @@
       {
         "polyfill": false
       }
-    ]
+    ],
+    "transform-decorators-legacy"
   ],
   "presets": [
     [
