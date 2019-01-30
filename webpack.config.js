@@ -30,7 +30,15 @@ module.exports = {
       },
       {
         test: /\.jsx?$/,
-        use: ['babel-loader'],
+        use: ['babel-loader'
+        // , {
+        //   loader: 'eslint-loader',
+        //   options: {
+        //     enforce: 'pre',
+        //     exclude: /node_modules/
+        //   }
+        // }
+      ],
         exclude: path.resolve(__dirname, 'node_modules')
       }
     ]
