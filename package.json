@@ -1,8 +1,9 @@
 {
-  "name": "webpack-practice",
+  "name": "webpack-practice-mm",
   "version": "1.0.0",
   "description": "\"# webpack-practice\"",
-  "main": "webpack.common.js",
+  "main": "lib/index.js",
+  "jsnext:main": "src/index.js",
   "scripts": {
     "start": "webpack --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
