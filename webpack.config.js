@@ -3,8 +3,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
-console.log(__dirname);
-console.log(path.resolve(__dirname, './dist'));
 module.exports = {
   // JavaScript 执行入口文件
   entry: {
