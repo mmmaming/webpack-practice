@@ -2,6 +2,7 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const HappyPack = require('happypack');
 
 module.exports = {
   // JavaScript 执行入口文件
@@ -10,7 +11,7 @@ module.exports = {
   },
   output: {
     // 把所有依赖的模块合并输出到一个 bundle.js 文件
-    filename: '[name]_[chunkhash:8].js',
+    filename: '[name]_.js',
     // 把输出文件都放到 dist 目录下
     path: path.resolve(__dirname, './dist'),
   },
@@ -30,20 +31,31 @@ module.exports = {
       },
       {
         test: /\.jsx?$/,
-        use: ['babel-loader'
-        // , {
-        //   loader: 'eslint-loader',
-        //   options: {
-        //     enforce: 'pre',
-        //     exclude: /node_modules/
-        //   }
-        // }
-      ],
+        use: ['happypack/loader?id=babel'
+          // , {
+          //   loader: 'eslint-loader',
+          //   options: {
+          //     enforce: 'pre',
+          //     exclude: /node_modules/
+          //   }
+          // }
+        ],
         exclude: path.resolve(__dirname, 'node_modules')
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif)$/,
+        use: 'file-loader'
       }
     ]
   },
   plugins: [
+    new HappyPack({
+      // 用唯一的标识符 id 来代表当前的 HappyPack 是用来处理一类特定的文件
+      id: 'babel',
+      // 如何处理 .js 文件，用法和 Loader 配置中一样
+      loaders: ['babel-loader?cacheDirectory'],
+      // ... 其它配置项
+    }),
     new HtmlWebpackPlugin({
       template: './template.html',
       filename: 'index.html'
@@ -73,6 +85,5 @@ module.exports = {
         reduce_vars: true,
       }
     })
-
   ]
 };
